@@ -1,0 +1,25 @@
+<div class="container text-center boddie">
+  <div class="header">
+    <h1>Welcome to the longest-word game!</h1>
+    <h2>Here's a grid of letters just for you</h2>
+    <h2 class="letters"><%= @grid.join(" ") %></h2>
+    <p>Your objective is to form the longest english word you can with just these.
+     The longer and faster you get it, the higher you score</p>
+  </div>
+  <form action="/score">
+    <input type="hidden" name="start" id="time">
+    <input type="hidden" name="grid" value="<%=@grid.join%>">
+    <div class="form-group">
+      <label for="word">What's your guess?</label>
+      <input type="text" id="word" name="guess">
+    </div>
+    <input type="submit" value="Guess it!" class="btn btn-success">
+  </form>
+</div>
+
+
+<script>
+  document.getElementById("word").addEventListener("focus", (event) => {
+    document.getElementById("time").value = new Date();
+  });
+</script>
