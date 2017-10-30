@@ -13,6 +13,16 @@ class PagesController < ApplicationController
     @end_time = Time.now
 
     @result = run_game(@attempt, @grid, @start_time, @end_time)
+
+    if session.key?(:user_scores)
+      session[:user_scores] << @result[:score]
+      session[:user_scores].sort!.reverse!
+      if session[:user_scores].length > 10
+        session[:user_scores].pop
+      end
+    else
+      session[:user_scores] = [@result[:score]]
+    end
   end
 
   private

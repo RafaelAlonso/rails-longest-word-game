@@ -3,4 +3,10 @@
   <h2>Score: <%= @result[:score]%></h2>
   <p>Time taken: <%= @result[:time] %> seconds</p>
   <%= link_to "Play again!", root_path %>
+  <h2>Leaderboard</h2>
+  <ul class="list-unstyled">
+    <% session[:user_scores].each do |score| %>
+    <li><%= score %></li>
+    <% end %>
+  </ul>
 </div>
